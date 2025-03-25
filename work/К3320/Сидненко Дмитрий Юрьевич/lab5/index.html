@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карта изображений на весь экран</title>
+    <style>
+        /* Убираем отступы у body и html */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: url('your-image.jpg') center/cover no-repeat; /* Фоновое изображение */
+        }
+
+        /* Общие стили для областей */
+        .area {
+            position: absolute;
+            border: 2px solid rgba(255, 0, 0, 0.5);
+            background-color: rgba(255, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        /* Овальная область */
+        .oval { width: 150px; height: 100px; border-radius: 50%; }
+
+        /* Треугольная область */
+        .triangle { width: 100px; height: 100px; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+
+        /* Прямоугольная область */
+        .rectangle { width: 150px; height: 100px; }
+
+        /* Шестиугольная область */
+        .hexagon { width: 100px; height: 55px; clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); }
+
+        /* Круглая область */
+        .circle { width: 100px; height: 100px; border-radius: 50%; }
+    </style>
+</head>
+<body>
+    <!-- Области -->
+    <div class="area oval" style="top: 20px; left: 20px;" onclick="openMedia('https://www.youtube.com/embed/lyh2kAjcmSY', '800', '600')"></div>
+    <div class="area triangle" style="top: 20px; right: 20px;" onclick="openMedia('https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/115897977&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true', '600', '400')"></div>
+    <div class="area rectangle" style="bottom: 20px; left: 20px;" onclick="openNewWindow('https://my.itmo.ru/', '600', '400')"></div>
+    <div class="area hexagon" style="bottom: 20px; right: 20px;" onclick="changeColor(this)"></div>
+    <div class="area circle" style="top: 50%; left: 50%; transform: translate(-50%, -50%);" onclick="openNewTab('https://www.google.com')"></div>
+
+    <script>
+        // Универсальная функция для открытия медиа
+        function openMedia(url, width, height) {
+            window.open(url, '_blank', `width=${width},height=${height}`);
+        }
+
+        // Открытие нового окна
+        function openNewWindow(url, width, height) {
+            window.open(url, '_blank', `width=${width},height=${height}`);
+        }
+
+        // Изменение цвета области
+        function changeColor(area) {
+            area.style.backgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+        }
+
+        // Открытие новой вкладки
+        function openNewTab(url) {
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
